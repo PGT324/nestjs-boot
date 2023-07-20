@@ -7,7 +7,7 @@ export class JwtAccessStrategy extends PassportStrategy(Strategy, 'access') {
   constructor() {
     super({
       //   jwtFromRequest: (req) => {
-      //     const temp = req.headers.Authorization; // Bearer adfejfiwfjkdls
+      //     const temp = req.headers.Authorization; // 우리가 입력한 토큰
       //     const accessToken = temp.toLowercase().replace('bearer ', '');
       //     return accessToken;
       //   }, //access Token
