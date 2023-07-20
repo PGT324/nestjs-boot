@@ -1,5 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { IsNumber, IsString, Min } from 'class-validator';
+import { ProductSalesLocationInput } from 'src/apis/productsSalesLocations/dto/productSaleLocation.input';
 
 @InputType()
 export class CreateProductInput {
@@ -15,4 +16,13 @@ export class CreateProductInput {
   @IsNumber()
   @Field(() => Number)
   price: number;
+
+  @Field(() => ProductSalesLocationInput)
+  productSalesLocation: ProductSalesLocationInput;
+
+  @Field(() => String)
+  pruductCategoryId: string;
+
+  @Field(() => [String])
+  productTags: string[];
 }
