@@ -24,4 +24,8 @@ export class User {
   @Column()
   @Field(() => Int)
   age: number;
+
+  @Column({ default: 0 })
+  @Field(() => Int)
+  point: number;
 }

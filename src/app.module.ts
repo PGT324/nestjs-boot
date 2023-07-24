@@ -8,6 +8,9 @@ import { ProductsModule } from './apis/products/products.module';
 import { ProductsCategoriesModule } from './apis/productsCategories/productsCategories.module';
 import { UsersModule } from './apis/users/users.module';
 import { AuthModule } from './apis/auth/auth.module';
+import { PointsTransactionsModule } from './apis/pointsTransactions/pointsTransactions.module';
+import { PaymentsMoudle } from './apis/payments/payments.module';
+import { FilesModule } from './apis/files/files.module';
 
 @Module({
   imports: [
@@ -16,11 +19,21 @@ import { AuthModule } from './apis/auth/auth.module';
     ProductsCategoriesModule,
     UsersModule,
     AuthModule,
+    PointsTransactionsModule,
+    PaymentsMoudle,
+    FilesModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       //schema 파일 자동생성
       autoSchemaFile: 'src/commons/graphql/schema.gql',
+      //auth부분에서 refreshToken을 보내줄때 이 설정을 안하면 req,res를 사용할 수 없다.(default값은 req만)
+      context: ({ req, res }) => {
+        return {
+          req,
+          res,
+        };
+      },
     }),
     TypeOrmModule.forRoot({
       type: process.env.DB_TYPE as 'mysql',

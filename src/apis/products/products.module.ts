@@ -7,6 +7,7 @@ import { ProductsSalesLocationsService } from '../productsSalesLocations/product
 import { ProductSalesLocation } from '../productsSalesLocations/entities/productSaleLocation.entity';
 import { ProductsTagsService } from '../productsTags/productTags.service';
 import { ProductTag } from '../productsTags/entities/productTag.entity';
+import { ProductSubscriber } from './entities/product.subscriber';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ProductTag } from '../productsTags/entities/productTag.entity';
     ProductsService,
     ProductsSalesLocationsService,
     ProductsTagsService,
+    ProductSubscriber,
   ],
 })
 export class ProductsModule {}

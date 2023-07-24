@@ -2,9 +2,8 @@ import { Args, Context, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { IContext } from './interfaces/users-service-context.interface';
-import { GqlAuthAccessGuard } from '../auth/guard/graphql-auth.guard';
+import { GqlAuthGuard } from '../auth/guard/graphql-auth.guard';
 
 @Resolver()
 export class UsersResolver {
@@ -13,7 +12,7 @@ export class UsersResolver {
   ) {}
 
   // RestAPI일때의 인가방식 => graphql Request는 조금 다르기 때문에 바꿔주는 함수가 하나 필요하다.
-  @UseGuards(GqlAuthAccessGuard)
+  @UseGuards(GqlAuthGuard({ name: 'access' }))
   @Query(() => String)
   fetchUser(@Context() context: IContext): string {
     //유저정보 꺼내오기

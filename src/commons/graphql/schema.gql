@@ -39,6 +39,7 @@ type User {
   email: String!
   name: String!
   age: Int!
+  point: Int!
 }
 
 type Product {
@@ -54,11 +55,33 @@ type Product {
   deletedAt: DateTime!
 }
 
+type PointTransaction {
+  id: String!
+  impUid: String!
+  amount: Int!
+  status: POINT_TRANSACTION_STATUS_ENUM!
+  user: User!
+  createdAt: DateTime!
+}
+
+enum POINT_TRANSACTION_STATUS_ENUM {
+  PAYMENT
+  CANCEL
+}
+
+type Payment {
+  id: String!
+  amount: Int!
+  tax: Int!
+  commission: Int!
+}
+
 type Query {
   fetchBoards: [Board!]!
   fetchProducts: [Product!]!
   fetchProduct(id: String!): Product!
   fetchUser: String!
+  fetchPayments: [Payment!]!
 }
 
 type Mutation {
@@ -69,6 +92,10 @@ type Mutation {
   createProductCategory(name: String!): ProductCategory!
   createUser(email: String!, password: String!, name: String!, age: Int!): User!
   login(email: String!, password: String!): String!
+  restoreAccessToken: String!
+  createPointTransaction(impUid: String!, amount: Int!): PointTransaction!
+  createPayment(amount: Float!): Payment!
+  uploadFile(files: [Upload!]!): String!
 }
 
 input CreateBoardInput {
@@ -101,3 +128,6 @@ input UpdateProductInput {
   productSalesLocation: ProductSalesLocationInput
   pruductCategoryId: String
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload

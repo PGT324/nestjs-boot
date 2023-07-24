@@ -1,0 +1,19 @@
+show databases;
+
+use test;
+
+# procedure 만들기
+create procedure mydummydata()
+begin
+	declare i int default 1;
+	while i <= 5000000 do
+		insert into board(writer, title, contents) values('철수', rand(), '반갑습니다'); 
+		set	i = i+1;
+	end while;
+end;
+
+# procedure 목록
+show procedure status;
+
+# procedure 실행
+call mydummydata();
