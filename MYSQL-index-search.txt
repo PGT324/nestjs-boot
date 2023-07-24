@@ -1,0 +1,21 @@
+# 데이터 전체 개수 확인
+select count(*) from board;
+
+# 쿼리 검색 속도 비교
+0.6985483502024303
+
+select * from board where title = '0.6985483502024303';
+
+select * from board where number = 3;
+
+# 옵티마이저의 실행계획 확인
+
+explain select * from board where title = '0.6985483502024303';
+
+explain select * from board where number = 3;
+
+# 인덱스 확인
+show index from board;
+
+# 인덱스 생성
+create index idx_title on board(title);

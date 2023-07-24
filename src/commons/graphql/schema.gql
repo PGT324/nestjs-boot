@@ -2,13 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Board {
-  number: Float!
-  writer: String!
-  title: String!
-  contents: String!
-}
-
 type ProductCategory {
   id: String!
   name: String!
@@ -77,7 +70,7 @@ type Payment {
 }
 
 type Query {
-  fetchBoards: [Board!]!
+  fetchBoards: String
   fetchProducts: [Product!]!
   fetchProduct(id: String!): Product!
   fetchUser: String!
